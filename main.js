@@ -39,7 +39,7 @@ wss.on('connection', function connection(ws, req) {
     });
 
     setInterval(() => {
-        ws.send({time: new Date().toTimeString()})
+        ws.send(JSON.stringify({time: new Date().toTimeString()}));
     }, 2000)
 });
 
