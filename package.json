@@ -5,12 +5,15 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
+    "socket": "node socket.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Pablo Aparicio",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "shortid": "^2.2.15",
+    "socket.io": "^2.3.0",
     "ws": "^7.2.3"
   }
 }
