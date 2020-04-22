@@ -5,7 +5,7 @@ const http = require('http');
 const Rooms = require('./Server/Classes/Channels');
 
 const app = express();
-const server = http.createServer(app);
+const server = http.Server(app);
 const wss = new WebSocket.Server({ server });
 
 const channels = new Rooms();
