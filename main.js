@@ -5,6 +5,8 @@ const wss = new WebSocket.Server({ port: 8080 });
 
 const channels = new Rooms();
 
+console.log('Server is start');
+
 wss.on('connection', function connection(ws, req) {
     ws.header = splitDataByURL(req.url);
     ws.header.id = channels.generateID();
