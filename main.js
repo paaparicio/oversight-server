@@ -1,12 +1,18 @@
 const WebSocket = require('ws');
+const express = require('express');
 const http = require('http');
 
 const Rooms = require('./Server/Classes/Channels');
 
-const server = http.createServer();
+const app = express();
+const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 const channels = new Rooms();
+
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
 
 console.log('Server is start');
 

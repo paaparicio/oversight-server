@@ -1,17 +1,16 @@
+const WebSocket = require('ws');
 const app = require('express')();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const wss = new WebSocket.Server({server});
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', client => {
-    console.log('Client connected');
+wss.on('connection', function connection(ws) {
+    console.log('open');
 
-    client.on('disconnect', () => {
-        console.log('Client disconnect');
-    })
-});
+    ws.on('close', () => console.log('close'))
+})
 
 server.listen(process.env.PORT || 8080);
