@@ -1,11 +1,14 @@
 const WebSocket = require('ws');
 const app = require('express')();
+const cors = require('cors');
 const server = require('http').Server(app);
 const wss = new WebSocket.Server({server});
 
 app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
+
+app.use(cors());
 
 console.log('start');
 
