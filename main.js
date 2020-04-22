@@ -37,6 +37,10 @@ wss.on('connection', function connection(ws, req) {
         console.log('Server - OnClose', "user: "+ ws.header.id);
         console.log(channels.CHANNELS_ARRAY);
     });
+
+    setInterval(() => {
+        ws.send({time: new Date().toTimeString()})
+    }, 20000)
 });
 
 server.listen(process.env.PORT || 8080);
