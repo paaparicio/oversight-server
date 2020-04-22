@@ -40,7 +40,7 @@ wss.on('connection', function connection(ws, req) {
 
     setInterval(() => {
         ws.send({time: new Date().toTimeString()})
-    }, 20000)
+    }, 2000)
 });
 
 server.listen(process.env.PORT || 8080);
