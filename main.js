@@ -33,7 +33,7 @@ wss.on('connection', function connection(ws, req) {
     });
 });
 
-server.listen(port: process.env.PORT || 8080);
+server.listen(process.env.PORT || 8080);
 
 function splitDataByURL(data) {
     let header = {};
