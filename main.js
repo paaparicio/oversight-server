@@ -1,7 +1,11 @@
 const WebSocket = require('ws');
+const https = require('https');
+
 const Rooms = require('./Server/Classes/Channels');
 
-const wss = new WebSocket.Server({ port: process.env.PORT || 8080 });
+const server = https.createServer().listen(process.env.PORT || 8080);
+
+const wss = new WebSocket.Server({ server });
 
 const channels = new Rooms();
 
