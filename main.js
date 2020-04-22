@@ -1,7 +1,10 @@
 const WebSocket = require('ws');
+const http = require('http');
+
 const Rooms = require('./Server/Classes/Channels');
 
-const wss = new WebSocket.Server({ port: process.env.PORT || 8080 });
+const server = http.createServer();
+const wss = new WebSocket.Server({ server });
 
 const channels = new Rooms();
 
@@ -29,6 +32,8 @@ wss.on('connection', function connection(ws, req) {
         console.log(channels.CHANNELS_ARRAY);
     });
 });
+
+server.listen(port: process.env.PORT || 8080);
 
 function splitDataByURL(data) {
     let header = {};
