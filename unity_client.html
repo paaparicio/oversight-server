@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Unity Client</h1>
+    <form>
+        <input type="text">
+        <input type="submit" value="connect">
+    </form>
+
+    <div id="form">
+        <input type="text">
+        <button onclick="onSendMessage()">Send</button>
+    </div>
+
+    <ul></ul>
+    <script>
+        let url, ws, id;
+
+        const form = document.querySelector('form');
+        const input = document.querySelector('input[type="text"]');
+
+        const message = document.querySelector('#form');
+        const input_message = document.querySelector('#form > input');
+
+        const ul = document.querySelector('ul');
+
+        function onSubmit(e) {
+            e.preventDefault();
+
+            ws && ws.close();
+
+            id = input.value;
+
+            url = "ws://localhost:8080?channel="+ id +"&device=Mobile";
+            ws = new WebSocket(url);
+
+            ws.onopen = () => {
+                message.style.display = "block";
+            }
+
+            ws.onmessage = (data) => {
+                ul.insertAdjacentHTML('beforeEnd', `<li>${data.data}</li>`)
+            }
+
+            ws.onclose = () => {
+                message.style.display = "none";
+            }
+        }
+        function onSendMessage() {
+            ws.send(JSON.stringify({message: input_message.value}));
+        }
+
+        form.addEventListener('submit', onSubmit);
+
+    </script>
+</body>
+</html>
