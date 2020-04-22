@@ -7,6 +7,8 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
+console.log('start');
+
 wss.on('connection', function connection(ws) {
     console.log('open');
 
