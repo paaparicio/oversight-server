@@ -77,7 +77,7 @@ module.exports = class Channels {
 
             client.header.channel = name;
 
-            this.CHANNEL_USER.send(name);
+            this.CHANNEL_USER.send(JSON.stringify({type: "room", value: name}));
 
             this.setVariablesUser(client);
             this.createUsersChannel();
