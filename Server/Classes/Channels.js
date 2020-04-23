@@ -52,11 +52,11 @@ module.exports = class Channels {
                     }
                 });
             } else {
-                this.CHANNEL_USER.send(JSON.stringify({error: this.ERROR_MESSAGES.session_full}));
+                this.CHANNEL_USER.send(JSON.stringify({type: "error", data: this.ERROR_MESSAGES.session_full}));
                 this.CHANNEL_USER.close();
             }
         } else {
-            this.CHANNEL_USER.send(JSON.stringify({error: this.ERROR_MESSAGES.session_exist}));
+            this.CHANNEL_USER.send(JSON.stringify({type: "error", data: this.ERROR_MESSAGES.session_exist}));
             this.CHANNEL_USER.close();
         }
     }
@@ -102,7 +102,7 @@ module.exports = class Channels {
                 if(this.CHANNEL_DEVICE === "UNITY") {
                     if(channel.name === this.CHANNEL_NAME) {
                         channel.users.forEach(user => {
-                            user.send(JSON.stringify({error: this.ERROR_MESSAGES.game_disconnect}));
+                            user.send(JSON.stringify({type: "error", data: this.ERROR_MESSAGES.game_disconnect}));
                             user.close()
                         });
                     }
