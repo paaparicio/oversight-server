@@ -20,6 +20,7 @@ module.exports = class Channels {
         this.CHANNEL_USER.id = client.header.id;
         this.CHANNEL_NAME = client.header.channel;
         this.CHANNEL_DEVICE = client.header.device;
+        this.CHANEL_MULTIDEVICE = false;
     }
 
     generateID() {
@@ -77,7 +78,7 @@ module.exports = class Channels {
 
             client.header.channel = name;
 
-            this.CHANNEL_USER.send(JSON.stringify({type: "room", value: name}));
+            this.CHANNEL_USER.send(JSON.stringify({type: "ROOM", value: name, multidevice: this.CHANEL_MULTIDEVICE}));
 
             this.setVariablesUser(client);
             this.createUsersChannel();
