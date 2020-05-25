@@ -83,6 +83,11 @@ module.exports = class Channels {
             this.setVariablesUser(client);
             this.createUsersChannel();
         } else {
+            this.setVariablesUser(client);
+            this.CHANEL_MULTIDEVICE = true;
+
+            this.CHANNEL_USER.send(JSON.stringify({type: "ROOM", value: this.CHANNEL_NAME, multidevice: this.CHANEL_MULTIDEVICE}));
+
             this.addUserToChannel();
         }
 
