@@ -50,6 +50,9 @@ module.exports = class Channels {
                     if(channel.name === this.CHANNEL_NAME) {
                         channel.users.push(this.CHANNEL_USER);
                         channel.connected = channel.users.length;
+
+                        this.CHANEL_MULTIDEVICE = true;
+                        channel.users[0].send(JSON.stringify({type: "ROOM", value: this.CHANNEL_NAME, multidevice: this.CHANEL_MULTIDEVICE}));
                     }
                 });
             } else {
@@ -83,11 +86,6 @@ module.exports = class Channels {
             this.setVariablesUser(client);
             this.createUsersChannel();
         } else {
-            this.setVariablesUser(client);
-            this.CHANEL_MULTIDEVICE = true;
-
-            this.CHANNEL_USER.send(JSON.stringify({type: "ROOM", value: this.CHANNEL_NAME, multidevice: this.CHANEL_MULTIDEVICE}));
-
             this.addUserToChannel();
         }
 
