@@ -53,6 +53,7 @@ module.exports = class Channels {
 
                         this.CHANEL_MULTIDEVICE = true;
                         channel.users[0].send(JSON.stringify({type: "ROOM", value: this.CHANNEL_NAME, multidevice: this.CHANEL_MULTIDEVICE}));
+                        channel.users[1].send(JSON.stringify({type: "ROOM", value: this.CHANNEL_NAME, multidevice: this.CHANEL_MULTIDEVICE}));
                     }
                 });
             } else {
