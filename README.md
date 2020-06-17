@@ -1,7 +1,7 @@
 # Oversight Server
 Welcome to the Oversight server  
 
-##Config Project
+## Config Project
 >Setup Dependencies  
 `npm install`
 
